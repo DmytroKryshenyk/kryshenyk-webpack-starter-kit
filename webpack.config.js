@@ -16,19 +16,26 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
+        use: [
+          "style-loader",
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { url: false } },
+          "postcss-loader",
+          "sass-loader"
+        ]
       }
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin([{ from: "./src/fonts", to: "./fonts" }, { from: "./src/images", to: "./images" }]),
     new HtmlWebpackPlugin({
       inject: true /* автоматично в html вставляє лінки на JS і CSS */,
       template: "src/index.html" /* працювати саме з нашим html файлом */
     }),
     new MiniCssExtractPlugin({
-      filename: "styles/styles.css" /*це шлях і імя результуючого файла, де в нас буде зберігатись весь наш css*/
-    }),
-    new CleanWebpackPlugin(),
-    new CopyPlugin([{ from: "./src/fonts", to: "./fonts" }, { from: "./src/images", to: "./images" }])
+      filename:
+        "styles/styles.css" /*це шлях і імя результуючого файла, де в нас буде зберігатись весь наш css*/
+    })
   ]
 };
