@@ -29,6 +29,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([{ from: "./src/fonts", to: "./fonts" }, { from: "./src/images", to: "./images" }]),
+    /*Якщо виникає помилка із копіюванням шрифтів "Error: EPERM: operation not permitted, lstat ...", 
+      то тоді просто закрий IDE, відкрий консоль із правами адміністратора і запусти build заново */
     new HtmlWebpackPlugin({
       inject: true /* автоматично в html вставляє лінки на JS і CSS */,
       template: "src/index.html" /* працювати саме з нашим html файлом */
