@@ -1,5 +1,5 @@
 # Webpack Starter Kit
-Hi, it’s my simple Wepack starter kit
+Hi, it’s my simple Webpack starter kit
 
 ## Build
 
